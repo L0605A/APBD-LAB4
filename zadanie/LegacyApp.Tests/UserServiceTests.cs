@@ -41,7 +41,6 @@ public class UserServiceTests
         Assert.False(result);
     }
     
-    
     [Fact]
     public void AddUser_ThrowsExceptionWhenClientDoesNotExist()
     {
@@ -62,13 +61,12 @@ public class UserServiceTests
         var userService = new UserService();
         
         //Act
-        Action action = () => userService.AddUser("John", "Doe", "johndoe@gmail.com", DateTime.Parse("1982-03-21"), 100);
+        Action action = () => userService.AddUser("TEST", "TEST", "johndoe@gmail.com", DateTime.Parse("1982-03-21"), 100);
         
         //Assert
         Assert.Throws<ArgumentException>(action);
     }
 
-    
     [Fact]
     public void AddUser_ReturnsFalseForMissingAtAndDotInEmail()
     {
@@ -135,13 +133,13 @@ public class UserServiceTests
     }
     
     [Fact]
-    public void ForNormalPersonWithNoCreditLimit()
+    public void ReturnsFalseForNormalPersonWithNoCreditLimit()
     {
         //Arrange
         var userService = new UserService();
         
         //Act
-        var result = userService.AddUser("John", "Doe", "johndoe@gmail.com", DateTime.Parse("1982-03-21"), 2);
+        var result = userService.AddUser("John", "Kowalski", "johndoe@gmail.com", DateTime.Parse("1982-03-21"), 1);
         
         //Assert
         Assert.False(result);
